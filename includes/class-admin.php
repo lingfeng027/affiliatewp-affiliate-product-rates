@@ -12,7 +12,7 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 
 	/**
 	 * Add the product rates table to the edit affiliate screen
-	 * @return [type] [description]
+	 * @since 1.0
 	 */
 	public function product_rates_table() {
 
@@ -32,16 +32,12 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 			$rates = array();
 		}
 
-	//	var_dump( $rates );
-		
-
 		?>
 		<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			// remove rate
 			$('.affwp_remove_rate').on('click', function(e) {
 				e.preventDefault();
-//				$(this).parent().parent().remove();
 				$(this).closest('tr').remove();
 			});
 
@@ -56,40 +52,28 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 				// clone the last row of the closest rates table
 				var row = ClosestRatesTable.find( 'tbody tr:last' );
 
-
 				// clone it
 				clone = row.clone();
 
 				// count the number of rows
 				var count = ClosestRatesTable.find( 'tbody tr' ).length;
-			//	console.log(count);
-
 
 				// find and clear all inputs
 				clone.find( 'td input' ).val( '' );
 
-				
-
-
 				// insert our clone after the last row
 				clone.insertAfter( row );
-
-
-				// select2 stuff
 
 				// empty the <td> that has the cloned select2
 				clone.find( 'td:first' ).empty();
 
 				// find the original select2
 				var original = row.find('select.apr-select-multiple');
-			//	console.log( original );
 
 				// clone it
 				var cloned = original.clone();
-			//	console.log( row );
 				
 				// insert after last
-				
 				clone.find('td:first').append( cloned );
 
 				// reinitialize the select2
@@ -97,23 +81,14 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 
 				var clonedName = cloned.attr('name');
 				clonedName = clonedName.replace( /\[(\d+)\]/, '[' + parseInt( count ) + ']');
-			//	console.log( clonedName );
 
 				cloned.attr( 'name', clonedName ).attr( 'id', clonedName );
-
-				// end select2 stuff
-
-
-
-
-			//	console.log( clone );
 
 				// replace the name of each input with the count
 				clone.find( '.test' ).each(function() {
 					var name = $( this ).attr( 'name' );
 
 					name = name.replace( /\[(\d+)\]/, '[' + parseInt( count ) + ']');
-				//	console.log( name );
 
 					$( this ).attr( 'name', name ).attr( 'id', name );
 				});
@@ -127,6 +102,9 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 		.select2-container {
 		  width: 100%;
 		}
+		.affwp-product-rates-header {
+			font-size: 14px;
+		}
 		.product-rates { margin-top: 20px; }
 		.affiliatewp-rates th { padding-left: 10px; }
 		.affwp_remove_rate { margin: 8px 0 0 0; cursor: pointer; width: 10px; height: 10px; display: inline-block; text-indent: -9999px; overflow: hidden; }
@@ -139,7 +117,9 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 
 		$enabled_integrations = affiliate_wp()->integrations->get_enabled_integrations();
 
-		echo '<h2>' . _e( 'Product Rates', 'affiliatewp-affiliate-product-rates' ) . '</h2>';
+		if ( $enabled_integrations ) {
+			echo '<p class="affwp-product-rates-header"><strong>' . __( 'Product Rates', 'affiliatewp-affiliate-product-rates' ) . '</strong></p>';
+		}
 
 		// add a table for each integration
 		foreach ( $enabled_integrations as $integration_key => $integration ) {
@@ -167,15 +147,7 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 					$count =  isset( $rates[$integration_key] ) ? $rates[$integration_key] : array();
 					$count = count( $count );
 
-					// number of rates in the array
-				//	var_dump( $count );
-
-					// edd or woocommerce 
-				//	var_dump( $integration_key );
-
-					
-					?>
-						<?php if ( isset( $rates[$integration_key] ) ) : 
+						if ( isset( $rates[$integration_key] ) ) : 
 							// index the arrays numerically
 							$rates[$integration_key] = array_values( $rates[$integration_key] );
 						?>
@@ -189,10 +161,7 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 							
 							$products = affiliatewp_affiliate_product_rates()->get_products( $integration_key );
 
-					
-
-						//	var_dump( $products );
-							?>
+						?>
 
 							
 							<tr class="row-<?php echo $key; ?>">

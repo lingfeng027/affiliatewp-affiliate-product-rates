@@ -1,24 +1,28 @@
 === AffiliateWP Affiliate Product Rates ===
 Contributors: sumobi, mordauk
-Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, referrals, easy digital downloads, digital downloads, woocommerce, woo
-Requires at least: 3.3
+Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, referrals, easy digital downloads, digital downloads, woocommerce, woo, products, product, rates
+Requires at least: 3.9
 Tested up to: 4.1
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Set per-affiliate product referral rates
+Allows you to set per-affiliate product referral rates in AffiliateWP
 
 == Description ==
 
-> This plugin requires [AffiliateWP](http://affiliatewp.com/ "AffiliateWP") in order to function.
+> This plugin requires [AffiliateWP](http://affiliatewp.com/ "AffiliateWP") v1.5.2+ in order to function.
 
-AffiliateWP Affiliate Product Rates ...
+Affiliate Product Rates adds another layer of control on top of what is already possible in AffiliateWP.
 
-**Currently supported integrations**
+**Currently Supported Integrations**
 
 1. Easy Digital Downloads
 2. WooCommerce
+
+**To Do**
+
+1. Prevent the same product from being selected again if already selected in another product rate.
 
 **What is AffiliateWP?**
 

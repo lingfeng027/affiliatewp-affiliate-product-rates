@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AffiliateWP - Affiliate Product Rates\n"
-"POT-Creation-Date: 2015-01-16 13:18+1200\n"
-"PO-Revision-Date: 2015-01-16 13:18+1200\n"
+"POT-Creation-Date: 2015-01-28 22:50+1200\n"
+"PO-Revision-Date: 2015-01-28 22:50+1200\n"
 "Last-Translator: Andrew Munro, Sumobi <andrew@sumobi.com>\n"
 "Language-Team: AffiliateWP <support@affiliatewp.com>\n"
 "Language: en_US\n"
@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
+#: ../affiliatewp-affiliate-product-rates.php:95
 #: ../affiliatewp-affiliate-product-rates.php:107
-#: ../affiliatewp-affiliate-product-rates.php:119
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
@@ -43,42 +43,42 @@ msgstr ""
 msgid " requires %sAffiliateWP%s. Please install it to continue."
 msgstr ""
 
-#: ../includes/class-admin.php:142
+#: ../includes/class-admin.php:121
 msgid "Product Rates"
 msgstr ""
 
-#: ../includes/class-admin.php:158
+#: ../includes/class-admin.php:138
 msgid "Product/s"
 msgstr ""
 
-#: ../includes/class-admin.php:159
+#: ../includes/class-admin.php:139
 msgid "Referral Rate"
 msgstr ""
 
-#: ../includes/class-admin.php:160
+#: ../includes/class-admin.php:140
 msgid "Type"
 msgstr ""
 
-#: ../includes/class-admin.php:201 ../includes/class-admin.php:243
+#: ../includes/class-admin.php:170 ../includes/class-admin.php:212
 msgid "Select Product"
 msgstr ""
 
-#: ../includes/class-admin.php:213 ../includes/class-admin.php:258
+#: ../includes/class-admin.php:182 ../includes/class-admin.php:227
 msgid "No Products found"
 msgstr ""
 
-#: ../includes/class-admin.php:225 ../includes/class-admin.php:269
+#: ../includes/class-admin.php:194 ../includes/class-admin.php:238
 msgid "Percentage (%)"
 msgstr ""
 
-#: ../includes/class-admin.php:226 ../includes/class-admin.php:270
+#: ../includes/class-admin.php:195 ../includes/class-admin.php:239
 msgid "Flat USD"
 msgstr ""
 
-#: ../includes/class-admin.php:238
+#: ../includes/class-admin.php:207
 msgid "No product rates created yet"
 msgstr ""
 
-#: ../includes/class-admin.php:281
+#: ../includes/class-admin.php:250
 msgid "Add New Product Rate"
 msgstr ""

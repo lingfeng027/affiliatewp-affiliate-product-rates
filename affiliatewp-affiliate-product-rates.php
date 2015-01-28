@@ -57,18 +57,6 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		private $version = '1.0';
 
 		/**
-		 * The plugin directory variable
-		 * @since  1.0
-		 */
-	//	public static $plugin_dir;
-
-		/**
-		 * The plugin URL variable
-		 * @since  1.0
-		 */
-	//	public static $plugin_url;
-
-		/**
 		 * Main AffiliateWP_Affiliate_Product_Rates Instance
 		 *
 		 * Insures that only one instance of AffiliateWP_Affiliate_Product_Rates exists in memory at any one
@@ -178,8 +166,15 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		 */
 		private function hooks() {
 			add_filter( 'affwp_calc_referral_amount', array( $this, 'calculate_referral_amount' ), 10, 5 );
-			add_action( 'affwp_update_affiliate_data', array( $this, 'update_affiliate' ), 10, 2 );
-			add_action( 'affwp_post_add_affiliate', array( $this, 'add_affiliate' ), 10, 3 );
+
+			// update the product rates when the affiliate is updated
+		//	add_action( 'affwp_update_affiliate_data', array( $this, 'update_affiliate' ), 10, 2 );
+			
+			add_action( 'affwp_post_update_affiliate', array( $this, 'update_affiliate' ), 10, 2 );
+
+
+			// add the product rates when adding a new affiliate
+			add_action( 'affwp_post_insert_affiliate', array( $this, 'add_affiliate' ), 10, 2 );
 		}
 
 		/**
@@ -233,12 +228,15 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		 * Add product rates for the  affiliate
 		 * 
 		 */
-		public function add_affiliate( $affiliate_id, $args, $data ) {
+
+		public function add_affiliate( $affiliate_id, $data ) {
+
 			$user_id = affwp_get_affiliate_user_id( $affiliate_id );
 
-			// save our rates
-			$this->save_product_rates( $user_id );
+			$this->save_product_rates( $user_id, $_POST );
+
 		}
+	
 
 		/**
 		 * Update the affiliate with their product rates
@@ -248,20 +246,24 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		 * @param  [type] $affiliate_id [description]
 		 * @return [type]               [description]
 		 */
-		public function update_affiliate( $args, $data ) {
-			// get the affiliate's WP user ID
-			$user_id = affwp_get_affiliate_user_id( $data['affiliate_id'] );
+		public function update_affiliate( $data ) {
 
-			// save our rates
-			$this->save_product_rates( $user_id );
+			$user_id = isset( $data['user_id'] ) ? $data['user_id'] : '';
+			
+			if ( $user_id ) {
+				// save our rates
+				$this->save_product_rates( $user_id, $_POST );
+			}
+			
 		}
+
 
 		/**
 		 * Save the product rates when adding or updating an affiliate
 		 * @since  1.0
 		 * @param  integer $user_id affiliate's WP user ID
 		 */
-		public function save_product_rates( $user_id = 0 ) {
+		public function save_product_rates( $user_id = 0, $data = array() ) {
 
 			// the array saved to the database
 			$saved = array();
@@ -283,8 +285,8 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 						} else {
 							// add to saved array
 							$saved[$integration_key][$key]['products'] = $rate['products'];
-							$saved[$integration_key][$key]['rate']    = sanitize_text_field( $rate['rate'] );
-							$saved[$integration_key][$key]['type']    = sanitize_text_field( $rate['type'] ); 
+							$saved[$integration_key][$key]['rate']     = sanitize_text_field( $rate['rate'] );
+							$saved[$integration_key][$key]['type']     = sanitize_text_field( $rate['type'] ); 
 						}
 
 					}
@@ -301,32 +303,30 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		 */
 		public function calculate_referral_amount( $referral_amount, $affiliate_id, $amount, $reference, $product_id ) {
 
-			// get the affiliate's product rates
-			$rates = $this->get_rates( $affiliate_id );
+			// get context
+			if ( isset( $_POST['edd_action'] ) && 'purchase' == $_POST['edd_action'] ) {
+				$context = 'edd';
+			} elseif( isset( $_GET['action'] ) && 'woocommerce_checkout' == $_GET['action'] ) {
+				$context = 'woocommerce';
+			} else {
+				$context = '';
+			}
 
-			if ( $rates ) {
-				foreach ( $rates as $rate ) {
-					// product matches
-					if ( $rate['product'] == $product_id ) {
+			if ( $context ) {
+				// get the affiliate's product rates
+				$rates = $this->get_rates( $affiliate_id );
+				$rates = isset( $rates[$context] ) ? $rates[$context] : '';
 
-						if ( 'percentage' == $rate['type'] ) {
-
-							// Sanitize the rate and ensure it's in the proper format
-							//if ( $rate['rate'] > 1 ) {
-							//var_dump( $amount );
+				if ( $rates ) {
+					foreach ( $rates as $rate ) {
+						// product matches
+						if ( in_array( $product_id, $rate['products'] ) ) {
+							if ( 'percentage' == $rate['type'] ) {
 								$referral_amount = $amount * $rate['rate'] / 100;
-	//							$special_referral_amount = $amount * .8; // 80%
-
-							//	var_dump( $referral_amount );
-							//}
-
-						} else {
-							$referral_amount = $rate['rate'];
-						//	var_dump( $referral_amount );
+							} else {
+								$referral_amount = $rate['rate'];
+							}
 						}
-
-						//wp_die();
-						
 					}
 				}
 			}
