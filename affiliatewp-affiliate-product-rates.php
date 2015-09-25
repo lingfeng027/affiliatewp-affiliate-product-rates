@@ -5,7 +5,7 @@
  * Description: Set per-affiliate product referral rates
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0.2
+ * Version: 1.0.3
  * Text Domain: affiliatewp-affiliate-product-rates
  * Domain Path: languages
  *
@@ -54,7 +54,7 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		private $version = '1.0.2';
+		private $version = '1.0.3';
 
 		/**
 		 * Main AffiliateWP_Affiliate_Product_Rates Instance
@@ -234,12 +234,12 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 			}
 
 		}
-	
+
 
 		/**
 		 * Update the affiliate with their product rates
 		 * Also handles sanitization
-		 * 
+		 *
 		 * @param  [type] $args         [description]
 		 * @param  [type] $affiliate_id [description]
 		 * @return [type]               [description]
@@ -247,12 +247,12 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		public function update_affiliate( $data ) {
 
 			$user_id = isset( $data['user_id'] ) ? $data['user_id'] : '';
-			
+
 			if ( $user_id ) {
 				// save our rates
 				$this->save_product_rates( $user_id, $_POST );
 			}
-			
+
 		}
 
 
@@ -273,7 +273,7 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 			if ( $product_rates ) {
 				// loop through each rate
 				foreach ( $product_rates as $integration_key => $rates_array ) {
-					
+
 					foreach ( $rates_array as $key => $rate ) {
 
 						if ( empty( $rate['products'] ) || empty( $rate['rate'] ) ) {
@@ -284,7 +284,7 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 							// add to saved array
 							$saved[$integration_key][$key]['products'] = $rate['products'];
 							$saved[$integration_key][$key]['rate']     = sanitize_text_field( $rate['rate'] );
-							$saved[$integration_key][$key]['type']     = sanitize_text_field( $rate['type'] ); 
+							$saved[$integration_key][$key]['type']     = sanitize_text_field( $rate['type'] );
 						}
 
 					}
@@ -301,7 +301,7 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 					// save to user meta if product data exists
 					update_user_meta( $user_id, 'affwp_product_rates', $saved );
 				}
-				
+
 			}
 
 		}
@@ -315,7 +315,7 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 			// get context
 			if ( isset( $_POST['edd_action'] ) && 'purchase' == $_POST['edd_action'] ) {
 				$context = 'edd';
-			} elseif( isset( $_GET['action'] ) && 'woocommerce_checkout' == $_GET['action'] ) {
+			} elseif( defined( 'WOOCOMMERCE_CHECKOUT' ) ) {
 				$context = 'woocommerce';
 			} else {
 				$context = '';
@@ -361,10 +361,10 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 			}
 
 			$products = get_posts(
-				array( 
+				array(
 					'post_type' => $post_type,
-					'nopaging'  => true, 
-					'orderby'   => 'title', 
+					'nopaging'  => true,
+					'orderby'   => 'title',
 					'order'     => 'ASC'
 				)
 			);
@@ -417,8 +417,8 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		 * @return array supported integrations
 		 */
 		public function supported_integrations() {
-			$supported_integrations = array( 
-				'edd', 
+			$supported_integrations = array(
+				'edd',
 				'woocommerce'
 			);
 
