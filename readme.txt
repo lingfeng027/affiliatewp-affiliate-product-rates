@@ -2,8 +2,8 @@
 Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, referrals, easy digital downloads, digital downloads, woocommerce, woo, products, product, rates
 Requires at least: 3.9
-Tested up to: 4.2.2
-Stable tag: 1.0.2
+Tested up to: 4.3.1
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Allows you to set product referral rates on a per-affiliate level in AffiliateWP
 
 > This plugin requires [AffiliateWP](http://affiliatewp.com/ "AffiliateWP") v1.5.2+ in order to function.
 
-At its most basic level AffiliateWP allows you to set a global referral rate which all affiliates share. For integrations that support per-product referral rates, affiliates can earn different commissions based on which product/s are purchased. AffiliateWP also allows you to set referral rates on a per-affiliate level which will override any per-product referral rate. 
+At its most basic level AffiliateWP allows you to set a global referral rate which all affiliates share. For integrations that support per-product referral rates, affiliates can earn different commissions based on which product/s are purchased. AffiliateWP also allows you to set referral rates on a per-affiliate level which will override any per-product referral rate.
 
 Affiliate Product Rates expands this even further, allowing different per-product referral rates on a per-affiliate level.
 
@@ -56,9 +56,12 @@ Go to Affiliates &rarr; Affiliates, and click "edit" next to the affiliate you'd
 
 == Changelog ==
 
+= 1.0.3 =
+* Fix: Product rates not working correctly in WooCommerce
+
 = 1.0.2 =
 * Fix: Email tags were empty in affiliate administration email
-* Fix: Affiliates were registered as "pending" even though affiliate approval was disabled 
+* Fix: Affiliates were registered as "pending" even though affiliate approval was disabled
 
 
 = 1.0.1 =
