@@ -5,7 +5,7 @@
  * Description: Set per-affiliate product referral rates
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0.3
+ * Version: 1.0.4
  * Text Domain: affiliatewp-affiliate-product-rates
  * Domain Path: languages
  *
@@ -363,9 +363,9 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 			$products = get_posts(
 				array(
 					'post_type' => $post_type,
-					'nopaging'  => true,
 					'orderby'   => 'title',
-					'order'     => 'ASC'
+					'order'     => 'ASC',
+					'posts_per_page' => 300
 				)
 			);
 
