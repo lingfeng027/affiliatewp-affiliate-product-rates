@@ -54,7 +54,7 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		private $version = '1.0.3';
+		private $version = '1.0.4';
 
 		/**
 		 * Main AffiliateWP_Affiliate_Product_Rates Instance
