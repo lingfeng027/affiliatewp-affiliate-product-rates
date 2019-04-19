@@ -3,7 +3,7 @@ Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, referrals, easy digital downloads, digital downloads, woocommerce, woo, products, product, rates
 Requires at least: 3.9
 Tested up to: 5.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,11 @@ Go to Affiliates &rarr; Affiliates, and click "edit" next to the affiliate you'd
 1. The product rates UI. Shown with 2 integrations active, Easy Digital Downloads and WooCommerce. The same UI is also available when adding an affiliate.
 
 == Changelog ==
+
+= 1.0.5 =
+* Fix: Flat rate shows USD instead of the currency selected in the general settings
+* Tweak: Update the Tested up to WordPress version to 5.1
+* Tweak: Add translation files for the Polish language (pl_PL)
 
 = 1.0.4 =
 * Fix: Limit products to 300 in the product drop down

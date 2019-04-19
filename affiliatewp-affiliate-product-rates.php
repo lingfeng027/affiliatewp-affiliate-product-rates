@@ -5,7 +5,7 @@
  * Description: Set per-affiliate product referral rates
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0.4
+ * Version: 1.0.5
  * Text Domain: affiliatewp-affiliate-product-rates
  * Domain Path: languages
  *
@@ -24,7 +24,7 @@
  * @package Affiliate Product Rates
  * @category Core
  * @author Andrew Munro
- * @version 1.0
+ * @version 1.0.5
  */
 
 
@@ -54,7 +54,7 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		private $version = '1.0.4';
+		private $version = '1.0.5';
 
 		/**
 		 * Main AffiliateWP_Affiliate_Product_Rates Instance
