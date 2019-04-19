@@ -192,7 +192,7 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 								<td>
 									<select class="test" name="product_rates[<?php echo $integration_key;?>][<?php echo $key; ?>][type]">
 										<option value="percentage"<?php selected( 'percentage', $type ); ?>><?php _e( 'Percentage (%)', 'affiliatewp-affiliate-product-rates' ); ?></option>
-										<option value="flat"<?php selected( 'flat', $type ); ?>><?php _e( 'Flat USD', 'affiliatewp-affiliate-product-rates' ); ?></option>
+										<option value="flat"<?php selected( 'flat', $type ); ?>><?php printf( __( 'Flat %s', 'affiliatewp-affiliate-product-rates' ), affwp_get_currency() ); ?></option>
 									</select>
 								</td>
 								<td>
@@ -236,7 +236,7 @@ class AffiliateWP_Affiliate_Product_Rates_Admin {
 							<td>
 								<select name="product_rates[<?php echo $integration_key; ?>][<?php echo $count; ?>][type]" class="test">
 									<option value="percentage"><?php _e( 'Percentage (%)', 'affiliatewp-affiliate-product-rates' ); ?></option>
-									<option value="flat"><?php _e( 'Flat USD', 'affiliatewp-affiliate-product-rates' ); ?></option>
+									<option value="flat"><?php printf( __( 'Flat %s', 'affiliatewp-affiliate-product-rates' ), affwp_get_currency() ); ?></option>
 								</select>
 							</td>
 							<td>
