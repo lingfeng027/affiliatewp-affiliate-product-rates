@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name: AffiliateWP - Affiliate Product Rates
- * Plugin URI: http://affiliatewp.com/addons/affiliate-product-rates/
+ * Plugin URI: https://affiliatewp.com/add-ons/official-free/affiliate-product-rates/
  * Description: Set per-affiliate product referral rates
- * Author: Pippin Williamson and Andrew Munro
- * Author URI: http://affiliatewp.com
+ * Author: Sandhills Development, LLC
+ * Author URI: https://sandhillsdev.com
  * Version: 1.0.5.1
  * Text Domain: affiliatewp-affiliate-product-rates
  * Domain Path: languages
