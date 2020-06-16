@@ -369,6 +369,17 @@ if ( ! class_exists( 'AffiliateWP_Affiliate_Product_Rates' ) ) {
 				)
 			);
 
+			$courses = get_posts(
+				array(
+					'post_type' => 'lp_course',
+					'orderby'   => 'title',
+					'order'     => 'ASC',
+					'posts_per_page' => 300
+				)
+			);
+
+			$products = array_merge($products, $courses);
+
 			if ( ! empty( $products ) ) {
 				return $products;
 			}
